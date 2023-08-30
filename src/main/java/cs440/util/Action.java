@@ -11,4 +11,14 @@ public interface Action {
 	
 	public final static String[] ALL = {SUCK, DO_NOTHING, UP, RIGHT, DOWN, LEFT};
 	
+	/**
+	 * Randomly returns action from collection
+	 * 
+	 * @return Action random action
+	 */
+	public static Action randomAction() {
+		return null;
+		// TODO randomAction()
+	}
+	
 }

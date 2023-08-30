@@ -10,7 +10,7 @@ public class FloorState {
 	 * displayString displays the current floor state in the form of a
 	 * formatted string
 	 * 
-	 * @return String graphical representation of floor state
+	 * @return graphical representation of floor state
 	 */
 	public String displayString() {
 		return null;
@@ -20,13 +20,16 @@ public class FloorState {
 	/**
 	 * Flattens the 2D array of tiles into a single string
 	 * 
-	 * @return String flattened representation of floor state
+	 * @return flattened representation of floor state
 	 */
 	public String toString() {
 		return null;
 		// TODO toString()
 	}
 	
+	/*
+	 * Convenient constructors
+	 */
 	public FloorState() {
 		super();
 	}
@@ -34,6 +37,17 @@ public class FloorState {
 	public FloorState(String floor) {
 		super();
 		setTilesFromString(floor);
+	}
+	
+	/*
+	 * getters and setters for tiles
+	 */
+	private char[][] getTiles() {
+		return tiles;
+	}
+	
+	private void setTiles(char[][] fromString) {
+		tiles = fromString;
 	}
 	
 	/**
@@ -45,23 +59,30 @@ public class FloorState {
 	public void setTilesFromString(String tStr) {
 		this.setTiles(fromString(tStr));
 	}
-	
-	private char[][] getTiles() {
-		return tiles;
-	}
-	
-	private void setTiles(char[][] fromString) {
-		tiles = fromString;
-	}
 
 	/**
+	 * Creates a new character array that represents the floor state
+	 * from a string
 	 * 
 	 * @param tStr
 	 * @return
 	 */
 	public char[][] fromString(String tStr) {
-		return tiles;
+		return null;
 		// TODO fromString()
+	}
+	
+	/**
+	 * Creates and returns a new floor state object based on the current
+	 * state if a provided action is taken.
+	 * 
+	 * @param a action
+	 * @return FloorState new floor state based on current
+	 * once the action is taken
+	 */
+	public FloorState nextStateFromAction(Action a) {
+		return null;
+		// TODO nextStateFromAction()
 	}
 
 }
