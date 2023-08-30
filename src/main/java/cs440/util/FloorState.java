@@ -84,5 +84,16 @@ public class FloorState {
 		return null;
 		// TODO nextStateFromAction()
 	}
+	
+	/**
+	 * Determines whether the floor is currently clean, meaning
+	 * there is no more dirt on the floor
+	 * 
+	 * @return true is clean, false is not
+	 */
+	public boolean isClean() {
+		return false;
+		// TODO isClean()
+	}
 
 }

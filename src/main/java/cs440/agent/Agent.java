@@ -1,5 +1,6 @@
 package cs440.agent;
 
+import cs440.util.Action;
 import cs440.util.FloorState;
 
 /**
@@ -34,5 +35,5 @@ public abstract class Agent {
 	 * decide will determine what the agent does next
 	 * whether that is suck, do nothing, or move up, down, left, or right
 	 */
-	public abstract void decide();
+	public abstract Action decide();
 }
