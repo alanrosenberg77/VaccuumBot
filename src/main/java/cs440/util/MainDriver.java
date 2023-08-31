@@ -10,20 +10,15 @@ public class MainDriver {
 		/*
 		 * Give our agent a chance to think...make a plan.
 		 */
-		FloorState start = new FloorState("87654321*");
-		FloorState goal =  new FloorState("12345678*");
+		FloorState start = new FloorState("0011010010101100110000011");
+		FloorState goal =  new FloorState("0000000000000000000000000");
 		
 		Agent agent = new RandomAgent();
 		//Agent agent = new GreedyBestAgent();
 		//Agent agent = new BfsAgent();
 		
-		agent.setStartState(start);
+		agent.setCurrentState(start);
 		agent.setGoalState(goal);
-		
-		System.err.println("Starting to plan....");
-		Action actions = agent.decide();
-		System.err.println("\n\n....ok.  I got it.\n\n");
-		
 		
 		/*
 		 * Now that our agent has a plan.  Let's see how
@@ -34,27 +29,34 @@ public class MainDriver {
 		FloorState current = start;
 		System.err.println(current.displayString());	
 		
+		Action action;
+		
 		/*
 		 * Iterate over each action in the plan....
 		 */
 		while(!current.isClean()) {
-			System.err.println(actions);	//display the action
+			
+			action = agent.decide();
+			
+			System.err.println(action);	//display the action
 			
 			// now use the action to generate the state in our
 			// environment and display so we can see the puzzle
 			// changing.
 			try {
-				current = current.nextStateFromAction(actions);
+				
+				current = current.nextStateFromAction(action);
 				System.err.println(current.displayString());
 			}
 			catch (Exception e) {
+				
 				System.err.println("\n shit...");
 				e.printStackTrace();
 				System.exit(-1);
 			}
 		}
 		
-		System.err.println("\n\nHoly shit it worked");
+		System.err.println("\n\nHoly shit it worked.");
 		
 	}
 

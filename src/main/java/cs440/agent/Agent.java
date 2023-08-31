@@ -2,6 +2,7 @@ package cs440.agent;
 
 import cs440.util.Action;
 import cs440.util.FloorState;
+import cs440.util.InvalidActionException;
 
 /**
  * An instance of this interface will be capable of discerning the information
@@ -16,19 +17,120 @@ import cs440.util.FloorState;
 public abstract class Agent {
 	
 	//Start and end states of the floor
-	protected FloorState start;
+	protected FloorState current;
 	protected FloorState goal;
+	private int row;
+	private int col;
 
 	/*
 	 * Setters for start and goal
 	 */
 	
-	public void setStartState(FloorState start) {
-		this.start = start;
+	public void setCurrentState(FloorState current) {
+		this.current = current;
 	}
 	
 	public void setGoalState(FloorState goal) {
 		this.goal = goal;
+	}
+	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return col;
+	}
+	
+	/**
+	 * act will actually perform the agent's decided action.
+	 * It is dependent on the floor state to allow or disallow
+	 * the chosen action. For example, if the agent is on the
+	 * right barrier of the floor and tries to move right, the
+	 * floor state will disallow the action.
+	 * 
+	 * @param chosen action
+	 */
+	public FloorState act(String action) {
+		
+		if(action.equals("UP")) {
+			
+			try {
+				if(current.isValidAction(action)) {
+					
+					//Moving bot up one row and returning unchanged floor state
+					row++;
+					return current;
+				}
+			}
+			catch (InvalidActionException e) {
+				
+				//staying put and returning unchanged floor state
+				return current;
+			}
+		}
+		
+		if(action.equals("LEFT")) {
+			
+			try {
+				if(current.isValidAction(action)) {
+					
+					//Moving bot left one col and returning unchanged floor state
+					col--;
+					return current;
+				}
+			}
+			catch (InvalidActionException e) {
+				
+				//staying put and returning unchanged floor state
+				return current;
+			}
+		}
+		
+		if(action.equals("DOWN")) {
+			
+			try {
+				if(current.isValidAction(action)) {
+					
+					//Moving bot down one row and returning unchanged floor state
+					row--;
+					return current;
+				}
+			}
+			catch (InvalidActionException e) {
+				
+				//staying put and returning unchanged floor state
+				return current;
+			}
+		}
+		
+		if(action.equals("RIGHT")) {
+			
+			try {
+				if(current.isValidAction(action)) {
+					
+					//Moving bot right one col and returning unchanged floor state
+					col++;
+					return current;
+				}
+			}
+			catch (InvalidActionException e) {
+				
+				//staying put and returning unchanged floor state
+				return current;
+			}
+		}
+		
+		if(action.equals("SUCK")) {
+			
+			return current.nextStateFromAction(action);
+		}
+		
+		if(action.equals("DO_NOTHING")) {
+			return current;
+		}
+		
+		return null;
 	}
 	
 	/*
