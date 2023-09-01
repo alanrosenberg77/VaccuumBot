@@ -42,6 +42,11 @@ public abstract class Agent {
 		return col;
 	}
 	
+	public void setCoords(int row, int col) {
+		this.row = row;
+		this.col = col;
+	}
+	
 	/**
 	 * act will actually perform the agent's decided action.
 	 * It is dependent on the floor state to allow or disallow
@@ -59,7 +64,7 @@ public abstract class Agent {
 				if(current.isValidAction(action)) {
 					
 					//Moving bot up one row and returning unchanged floor state
-					row++;
+					row--;
 					return current;
 				}
 			}
@@ -93,7 +98,7 @@ public abstract class Agent {
 				if(current.isValidAction(action)) {
 					
 					//Moving bot down one row and returning unchanged floor state
-					row--;
+					row++;
 					return current;
 				}
 			}

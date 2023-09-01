@@ -85,6 +85,10 @@ public class FloorState {
 	private void setTiles(char[][] fromString) {
 		tiles = fromString;
 	}
+	
+	public void setBot(Agent bot) {
+		this.bot = bot;
+	}
 
 	/**
 	 * Uses a string to conveniently initialize our 2D array of characters. For
@@ -185,7 +189,7 @@ public class FloorState {
 		if (action.equals("DOWN")) {
 
 			int y = botRow();
-			if (y == 4)
+			if (y == DIMENSION-1)
 				throw new InvalidActionException("Can't go" + action);
 			else
 				return true;
@@ -209,7 +213,7 @@ public class FloorState {
 		if (action.equals("RIGHT")) {
 
 			int x = botCol();
-			if (x == 4)
+			if (x == DIMENSION-1)
 				throw new InvalidActionException("Can't go" + action);
 			else
 				return true;

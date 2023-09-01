@@ -11,11 +11,14 @@ public class MainDriver {
 		 * Give our agent a chance to think...make a plan.
 		 */
 		FloorState start = new FloorState("0011010010101100110000011");
+//		FloorState start = new FloorState("001101001");
 		FloorState goal =  new FloorState("0000000000000000000000000");
+//		FloorState goal = new FloorState("000000000");
 		
 		Agent agent = new RandomAgent();
 		//Agent agent = new GreedyBestAgent();
 		//Agent agent = new BfsAgent();
+		agent.setCoords(0, 0);
 		
 		agent.setCurrentState(start);
 		agent.setGoalState(goal);
@@ -27,9 +30,10 @@ public class MainDriver {
 		 * goal state (a solved puzzle).
 		 */
 		FloorState current = start;
+		current.setBot(agent);
 		System.err.println(current.displayString());	
 		
-		Action action;
+		String action;
 		
 		/*
 		 * Iterate over each action in the plan....
@@ -45,7 +49,7 @@ public class MainDriver {
 			// changing.
 			try {
 				
-				current = current.nextStateFromAction(action);
+				current = agent.act(action);
 				System.err.println(current.displayString());
 			}
 			catch (Exception e) {
@@ -58,6 +62,8 @@ public class MainDriver {
 		
 		System.err.println("\n\nHoly shit it worked.");
 		
+		// TODO why state showing twice before action?
+		// TODO what character to use to indicate bot on top of existing characters
 	}
 
 }
