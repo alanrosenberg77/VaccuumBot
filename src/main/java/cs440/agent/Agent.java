@@ -137,5 +137,5 @@ public abstract class Agent {
 	 * decide will determine what the agent does next
 	 * whether that is suck, do nothing, or move up, down, left, or right
 	 */
-	public abstract Action decide();
+	public abstract String decide();
 }

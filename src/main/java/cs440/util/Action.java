@@ -16,9 +16,8 @@ public interface Action {
 	 * 
 	 * @return Action random action
 	 */
-	public static Action randomAction() {
-		return null;
-		// TODO randomAction()
+	public static String randomAction() {
+		return ALL[(int) (Math.random()*6)];
 	}
 	
 }

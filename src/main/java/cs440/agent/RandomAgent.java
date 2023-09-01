@@ -10,7 +10,7 @@ public class RandomAgent extends Agent {
 	 * @return random action
 	 */
 	@Override
-	public Action decide() {
+	public String decide() {
 		
 		return Action.randomAction();
 	}
