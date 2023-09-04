@@ -19,8 +19,8 @@ public abstract class Agent {
 	//Start and end states of the floor
 	protected FloorState current;
 	protected FloorState goal;
-	private int row;
-	private int col;
+	protected int row;
+	protected int col;
 
 	/*
 	 * Setters for start and goal
@@ -142,5 +142,5 @@ public abstract class Agent {
 	 * decide will determine what the agent does next
 	 * whether that is suck, do nothing, or move up, down, left, or right
 	 */
-	public abstract String decide();
+	public abstract String[] decide();
 }

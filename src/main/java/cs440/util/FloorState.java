@@ -2,6 +2,19 @@ package cs440.util;
 
 import cs440.agent.Agent;
 
+/**
+ * FloorStates represent the physical state of the floor in the form
+ * of a 2D array of characters. These characters can be either 1 or 0,
+ * 1 meaning dirty and 0 meaning clean. The object will be able to display
+ * itself as a flattened string of characters and a formatted string for
+ * ease of use. It is capable of locating the bot, and communicates with
+ * it to allow or disallow actions it chooses. Additionally, each
+ * FloorState can generate a new FloorState based on an action the bot
+ * chooses.
+ * 
+ * @author alanr
+ *
+ */
 public class FloorState {
 
 	private final static int DIMENSION = 5;
@@ -76,12 +89,11 @@ public class FloorState {
 	}
 
 	/*
-	 * getters and setters for tiles
+	 * getters and setters
 	 */
-	private char[][] getTiles() {
+	public char[][] getTiles() {
 		return tiles;
 	}
-
 	private void setTiles(char[][] fromString) {
 		tiles = fromString;
 	}
@@ -161,7 +173,9 @@ public class FloorState {
 	}
 	
 	/**
-	 * determines whether the action is valid given the current floor state
+	 * Determines whether the action is valid given the current floor state
+	 * and position of the bot. Only checking for movement based actions as
+	 * other actions are allowable in every case.
 	 * 
 	 * @param action
 	 * @return true if valid
@@ -170,9 +184,8 @@ public class FloorState {
 	public boolean isValidAction(String action) throws InvalidActionException {
 		
 		/*
-		 * When the action is up, this if statement will execute the algorithm for
-		 * moving the blank up. It will also check if the blank is already as high up in
-		 * the puzzle as it can be. If so, the method will return null.
+		 * When the action is up, this if statement will check to make sure
+		 * the bot can move in that direction, throwing an exception if not
 		 */
 		if (action.equals("UP")) {
 

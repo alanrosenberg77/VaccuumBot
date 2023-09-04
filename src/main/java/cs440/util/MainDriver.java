@@ -2,61 +2,58 @@ package cs440.util;
 
 import cs440.agent.Agent;
 import cs440.agent.RandomAgent;
+import cs440.agent.SmartAgent;
 
 public class MainDriver {
 
 	public static void main(String[] args) {
 		
-		/*
-		 * Give our agent a chance to think...make a plan.
-		 */
 		FloorState start = new FloorState("0011010010101100110000011");
-//		FloorState start = new FloorState("001101001");
 		FloorState goal =  new FloorState("0000000000000000000000000");
-//		FloorState goal = new FloorState("000000000");
 		
 		Agent agent = new RandomAgent();
-		//Agent agent = new GreedyBestAgent();
-		//Agent agent = new BfsAgent();
-		agent.setCoords(0, 0);
+//		Agent agent = new SmartAgent();
 		
+		//configuring agent
+		agent.setCoords(0, 0);
 		agent.setCurrentState(start);
 		agent.setGoalState(goal);
 		
-		/*
-		 * Now that our agent has a plan.  Let's see how
-		 * it can be used.   We apply the plan, action by 
-		 * action, hoping the results lead us to our intended
-		 * goal state (a solved puzzle).
-		 */
 		FloorState current = start;
 		current.setBot(agent);
+		
+		//displaying start state
 		System.err.println(current.displayString());	
 		
-		String action;
+		String[] actions;
+		int count = 0;		//total actions taken
 		
-		/*
-		 * Iterate over each action in the plan....
-		 */
+		//Let the agent choose what to do until the floor is clean
 		while(!current.isClean()) {
 			
-			action = agent.decide();
+			actions = agent.decide();
 			
-			System.err.println(action);	//display the action
-			
-			// now use the action to generate the state in our
-			// environment and display so we can see the puzzle
-			// changing.
-			try {
+			for(int i = 0 ; i < actions.length ; i++) {
 				
-				current = agent.act(action);
-				System.err.println(current.displayString());
-			}
-			catch (Exception e) {
+				count++;	//tracking actions
 				
-				System.err.println("\n shit...");
-				e.printStackTrace();
-				System.exit(-1);
+				System.err.println(actions[i]);	//display the action
+				
+				// now use the action to generate the state in our
+				// environment and display so we can see the puzzle
+				// changing.
+				try {
+					
+					current = agent.act(actions[i]);
+					System.err.println(current.displayString());
+				}
+				catch (Exception e) {
+					
+					System.err.println("\n shit...");
+					e.printStackTrace();
+					System.exit(-1);
+				}
+				
 			}
 		}
 		
