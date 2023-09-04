@@ -57,7 +57,9 @@ public class MainDriver {
 			}
 		}
 		
-		System.err.println("\n\nHoly shit it worked.");
+		System.err.println("\n\nHoly shit it worked.\n\n");
+		
+		System.out.println("Smart Agent\n-----------\nTotal Actions: " + count);
 		
 		// TODO why state showing twice before action?
 		// TODO what character to use to indicate bot on top of existing characters
